@@ -1,3 +1,5 @@
+# IMPORT PACKAGES IN THIS CELL
+
 import os
 import openpyxl
 import pandas as pd
@@ -5,6 +7,11 @@ import smtplib
 import mimetypes
 from email.message import EmailMessage
 from analyticskit import *
+
+pd.options.display.float_format = '{:,.2f}'.format # Display option to include 2 decimal places on all floats
+pd.set_option('display.max_columns', None) # Display option to show all columns
+pd.set_option('display.max_rows', None) # Display option to show all rows
+
 
 
 # INSERT ANSWER FOR QUESTION 1 HERE
@@ -22,7 +29,6 @@ while True:
         if file in files:
             count += 1
     if count == 6:
-        show_message('success', 'file successfully identified')
         break
     else:
         show_message('error', 'directory missing necessary files')
@@ -41,7 +47,7 @@ prices = pd.read_excel(f'{directory}ProductData.xlsx', sheet_name='Prices')
 for i, row in prices.iterrows():
     product_prices[row['Unit number']] = row['Price per unit']
 
-show_message('success', 'made it to question 2')
+
 
 
 # INSERT ANSWER FOR QUESTION 3 HERE
@@ -85,7 +91,7 @@ def get_order_data(invoice_num, filename, directory):
     
     return order_data, name, email, date
 
-show_message('success', 'made it to question 3')
+
 
 # INSERT ANSWER FOR QUESTION 4 HERE
 
