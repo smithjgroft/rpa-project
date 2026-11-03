@@ -29,11 +29,9 @@ while True:
         if file in files:
             count += 1
     if count == 6:
-        show_message("yay", "it worked")
         break
     else:
         show_message('error', 'directory missing necessary files')
-
 
 
 
@@ -50,6 +48,7 @@ for i, row in prices.iterrows():
     product_prices[row['Unit number']] = row['Price per unit']
 
 
+show_message('success', 'completion of q2')
 
 
 # INSERT ANSWER FOR QUESTION 3 HERE
