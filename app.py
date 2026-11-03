@@ -35,6 +35,7 @@ while True:
 
 
 
+
 # INSERT ANSWER FOR QUESTION 2 HERE
 product_description = {}
 product_prices = {}
