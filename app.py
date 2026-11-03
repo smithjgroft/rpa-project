@@ -1,3 +1,5 @@
+# IMPORT PACKAGES IN THIS CELL
+
 import os
 import openpyxl
 import pandas as pd
@@ -6,7 +8,13 @@ import mimetypes
 from email.message import EmailMessage
 from analyticskit import *
 
+pd.options.display.float_format = '{:,.2f}'.format # Display option to include 2 decimal places on all floats
+pd.set_option('display.max_columns', None) # Display option to show all columns
+pd.set_option('display.max_rows', None) # Display option to show all rows
 
+
+
+# INSERT ANSWER FOR QUESTION 1 HERE
 
 directory_files = ['ProductData.xlsx', 'MasterInvoice.pdf', 'Order1.xlsx', 'Order2.xlsx', 'Order3.xlsx','Order4.xlsx']
 
@@ -27,6 +35,7 @@ while True:
 
 
 
+# INSERT ANSWER FOR QUESTION 2 HERE
 product_description = {}
 product_prices = {}
 
@@ -43,7 +52,7 @@ for i, row in prices.iterrows():
     product_prices[row['Unit number']] = row['Price per unit']
 
 
-
+# INSERT ANSWER FOR QUESTION 3 HERE
 def get_order_data(invoice_num, filename, directory):
     workbook = openpyxl.load_workbook(directory+filename)
     sheet = workbook['OrderForm']
@@ -86,18 +95,20 @@ def get_order_data(invoice_num, filename, directory):
 
 
 
+# INSERT ANSWER FOR QUESTION 4 HERE
+
 def create_invoice(invoice_num, order_data, directory):
     create_pdf(directory+'MasterInvoice.pdf', f'Invoice {invoice_num}.pdf', order_data)
 
 
 
+# INSERT ANSWER FOR QUESTION 5 HERE
 
 def send_email(invoice_num, name, email, date, directory):
     # Enter your gmail user name and password
 
     gmail_user = "smithjgroft@gmail.com"
-    gmail_password_path = select_file('Please select the gmail password file')
-    gmail_password = open(gmail_password_path).read()
+    gmail_password = open('gmail_password.txt').read()
 
     # List of recipients
 
@@ -146,8 +157,10 @@ def send_email(invoice_num, name, email, date, directory):
 
     mail_server.send_message(message)
     mail_server.quit()
+        
 
 
+# INSERT ANSWER FOR QUESTION 6 HERE
 
 filenames = sorted(os.listdir(directory))
 
