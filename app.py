@@ -1,3 +1,10 @@
+import os
+import openpyxl
+import pandas as pd
+import smtplib
+import mimetypes
+from email.message import EmailMessage
+from analyticskit import *
 
 
 # INSERT ANSWER FOR QUESTION 1 HERE
