@@ -85,6 +85,7 @@ def get_order_data(invoice_num, filename, directory):
     
     return order_data, name, email, date
 
+show_message('success', 'made it to question 3')
 
 # INSERT ANSWER FOR QUESTION 4 HERE
 
