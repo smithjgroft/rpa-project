@@ -1,5 +1,4 @@
 # IMPORT PACKAGES IN THIS CELL
-
 import os
 import openpyxl
 import pandas as pd
@@ -39,17 +38,16 @@ while True:
 product_description = {}
 product_prices = {}
 
-
-
 descriptions = pd.read_excel(f'{directory}ProductData.xlsx', sheet_name='Descriptions')
 for i, row in descriptions.iterrows():
     product_description[row['Unit number']] = row['Description']
 
-
-
 prices = pd.read_excel(f'{directory}ProductData.xlsx', sheet_name='Prices')
 for i, row in prices.iterrows():
     product_prices[row['Unit number']] = row['Price per unit']
+
+
+
 
 
 # INSERT ANSWER FOR QUESTION 3 HERE
@@ -108,7 +106,8 @@ def send_email(invoice_num, name, email, date, directory):
     # Enter your gmail user name and password
 
     gmail_user = "smithjgroft@gmail.com"
-    gmail_password = open('gmail_password.txt').read()
+    gmail_password_path = select_file('Please select the gmail password file')
+    gmail_password = open(gmail_password_path).read()
 
     # List of recipients
 
