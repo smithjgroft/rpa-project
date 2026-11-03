@@ -29,6 +29,7 @@ while True:
         if file in files:
             count += 1
     if count == 6:
+        show_message("yay", "it worked")
         break
     else:
         show_message('error', 'directory missing necessary files')
