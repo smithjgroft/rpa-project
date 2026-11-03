@@ -47,7 +47,6 @@ for i, row in prices.iterrows():
     product_prices[row['Unit number']] = row['Price per unit']
 
 
-show_message('q2 success')
 
 
 # INSERT ANSWER FOR QUESTION 3 HERE
@@ -91,14 +90,13 @@ def get_order_data(invoice_num, filename, directory):
     
     return order_data, name, email, date
 
-show_message('q3 success')
 
 # INSERT ANSWER FOR QUESTION 4 HERE
 
 def create_invoice(invoice_num, order_data, directory):
     create_pdf(directory+'MasterInvoice.pdf', f'Invoice {invoice_num}.pdf', order_data)
 
-show_message('q4 success')
+
 
 # INSERT ANSWER FOR QUESTION 5 HERE
 
@@ -158,7 +156,6 @@ def send_email(invoice_num, name, email, date, directory):
     mail_server.quit()
         
 
-show_message('q5 success')
 
 
 # INSERT ANSWER FOR QUESTION 6 HERE
@@ -173,4 +170,3 @@ for file in filenames:
         send_email(inv_num, name, email, date, directory)
         inv_num += 1
 
-show_message('q6 success')
