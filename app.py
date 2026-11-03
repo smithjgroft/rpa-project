@@ -8,11 +8,6 @@ import mimetypes
 from email.message import EmailMessage
 from analyticskit import *
 
-pd.options.display.float_format = '{:,.2f}'.format # Display option to include 2 decimal places on all floats
-pd.set_option('display.max_columns', None) # Display option to show all columns
-pd.set_option('display.max_rows', None) # Display option to show all rows
-
-
 
 # INSERT ANSWER FOR QUESTION 1 HERE
 
@@ -164,13 +159,20 @@ show_message('success', 'completion of q5')
 # INSERT ANSWER FOR QUESTION 6 HERE
 
 filenames = sorted(os.listdir(directory))
+show_message('success', 'completion of filename')
+
 
 inv_num = 8515
 for file in filenames:
     if 'Order' in file and 'xlsx' in file:
+        show_message('success', 'completion of search')
         order_data, name, email, date = get_order_data(inv_num, file, directory)
+        show_message('success', 'get order data')
         create_invoice(inv_num, order_data, directory)
+        show_message('success', 'create invoice')
         send_email(inv_num, name, email, date, directory)
+        show_message('success', 'send email')
         inv_num += 1
+        show_message('success', 'iterate')
 
 show_message('success', 'completion of q6')
