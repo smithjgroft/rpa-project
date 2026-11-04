@@ -159,15 +159,9 @@ filenames = sorted(os.listdir(directory))
 inv_num = 8515
 for file in filenames:
     if 'Order' in file and 'xlsx' in file:
-        show_message('success', 'completion of search')
         order_data, name, email, date = get_order_data(inv_num, file, directory)
-        show_message('success', 'get order data')
-        show_message(f'{order_data},{name},{email},{date}')
         create_invoice(inv_num, order_data, directory)
-        show_message('success', 'create invoice')
         send_email(inv_num, name, email, date, directory)
-        show_message('success', 'send email')
         inv_num += 1
-        show_message('success', 'iterate')
 
-show_message('success', 'completion of q6')
+
