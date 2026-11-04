@@ -43,8 +43,6 @@ for i, row in prices.iterrows():
     product_prices[row['Unit number']] = row['Price per unit']
 
 
-show_message('success', 'completion of q2')
-
 
 # INSERT ANSWER FOR QUESTION 3 HERE
 def get_order_data(invoice_num, filename, directory):
@@ -66,8 +64,8 @@ def get_order_data(invoice_num, filename, directory):
             quantity_cell = 'C' + str(start + i)
             quantity = sheet[quantity_cell].value
             desc = product_description[unit]
-            order_data[f'Price{i}'] = price
-            order_data[f'Quantity{i}'] = quantity
+            order_data[f'Price{i}'] = f'${price:,.2f}'
+            order_data[f'Quantity{i}'] = str(quantity)
             order_data[f'Description{i}'] = desc
             amount = float(price) * float(quantity)
             total += amount
@@ -77,24 +75,25 @@ def get_order_data(invoice_num, filename, directory):
             break
     order_data['Total'] = f'${total:,.2f}'
 
-    order_data['InvoiceNum'] = invoice_num
+    order_data['InvoiceNum'] = str(invoice_num)
     order_data['Date'] = date
 
     order_data['CustomerAddress1'] = sheet['C16'].value
     order_data['CustomerAddress2'] = sheet['C17'].value + ', ' + sheet['C18'].value + ' ' + str(sheet['C19'].value)
     order_data['CustomerName'] = name
     order_data['CustomerCompany'] = sheet['C15'].value
+
     
     return order_data, name, email, date
 
-show_message('success', 'completion of q3')
+
 
 # INSERT ANSWER FOR QUESTION 4 HERE
 
 def create_invoice(invoice_num, order_data, directory):
     create_pdf(directory+'MasterInvoice.pdf', f'{directory}Invoice {invoice_num}.pdf', order_data)
 
-show_message('success', 'completion of q4')
+
 
 # INSERT ANSWER FOR QUESTION 5 HERE
 
@@ -104,7 +103,6 @@ def send_email(invoice_num, name, email, date, directory):
     gmail_user = "smithjgroft@gmail.com"
     gmail_password_path = select_file('Please select the gmail password file')
     gmail_password = open(gmail_password_path).read()
-
     # List of recipients
 
     recipients = [email]
@@ -133,7 +131,6 @@ def send_email(invoice_num, name, email, date, directory):
     message = EmailMessage()
     message['From'] = gmail_user
     message['To'] = recipients
-    message['CC'] = recipients
     message['Subject'] = subject
     message.set_content(body)
 
@@ -152,14 +149,11 @@ def send_email(invoice_num, name, email, date, directory):
 
     mail_server.send_message(message)
     mail_server.quit()
-        
-show_message('success', 'completion of q5')
 
 
 # INSERT ANSWER FOR QUESTION 6 HERE
 
 filenames = sorted(os.listdir(directory))
-show_message('success', 'completion of filename')
 
 
 inv_num = 8515
