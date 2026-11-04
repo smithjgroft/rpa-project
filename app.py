@@ -92,7 +92,7 @@ show_message('success', 'completion of q3')
 # INSERT ANSWER FOR QUESTION 4 HERE
 
 def create_invoice(invoice_num, order_data, directory):
-    create_pdf(directory+'MasterInvoice.pdf', f'Invoice {invoice_num}.pdf', order_data)
+    create_pdf(directory+'MasterInvoice.pdf', f'{directory}Invoice {invoice_num}.pdf', order_data)
 
 show_message('success', 'completion of q4')
 
@@ -168,6 +168,7 @@ for file in filenames:
         show_message('success', 'completion of search')
         order_data, name, email, date = get_order_data(inv_num, file, directory)
         show_message('success', 'get order data')
+        show_message(f'{order_data},{name},{email},{date}')
         create_invoice(inv_num, order_data, directory)
         show_message('success', 'create invoice')
         send_email(inv_num, name, email, date, directory)
